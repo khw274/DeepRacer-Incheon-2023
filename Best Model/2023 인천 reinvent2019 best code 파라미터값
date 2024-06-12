@@ -15,10 +15,10 @@ No.
 9	 26.0	              2.00
 
 (Hyperparameter)                                                        (Value)
-Gradient descent batch size	                                            64
+Gradient descent batch size	                                        64
 Entropy	                                                                0.05       # Entropy 더 수정해볼 가치가 있음
 Discount factor	                                                        0.5
-Loss type	                                                              Huber
-Learning rate	                                                          0.0003
+Loss type	                                                        Huber
+Learning rate	                                                        0.0003
 Number of experience episodes between each policy-updating iteration    20
-Number of epochs	                                                        10
+Number of epochs	                                                10
