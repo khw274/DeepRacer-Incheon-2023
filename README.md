@@ -68,6 +68,7 @@ No.
 8	 26.0	              1.50
 9	 26.0	              2.00
 ```
+<img src="https://github.com/khw274/DeepRacer-Incheon-2023/assets/125671828/629a8ad6-a182-4f01-af0c-2cf8cac46361" width="500" height="500"/>
 
 #### 예선 결과
 ```47.483초로 3등을 본선 진출```
