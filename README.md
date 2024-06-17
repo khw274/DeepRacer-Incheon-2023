@@ -13,6 +13,8 @@
 
 ### 예선
 #### 보상함수 코드 설계
+이전 22년도 대회에서 도로의 중앙선 추종을 바탕으로 보상함수 코드를 설계했지만, 안정적이라는 장점 대신 커브길에서 아웃코스를 달려 맵타임이 증가하는 단점이 있었다.
+
 차량이 맵을 이탈하지 않으면서 최대한 빠른 기록으로 완주하기 위해서 최적의 waypoint를 찾는 프로그램을 사용했다.
 https://github.com/cdthompson/deepracer-k1999-race-lines/blob/master/Race-Line-Calculation.ipynb
 
