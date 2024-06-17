@@ -2,10 +2,12 @@
 
 import math
 
+# 두 점 사이의 유클리드 거리를 계산합니다.  
 def dist(point1, point2):
     return ((point1[0] - point2[0]) ** 2 + (point1[1] - point2[1]) ** 2) ** 0.5
 
 
+# 극좌표계의 좌표(r, theta)를 직교좌표계의 좌표(x, y)로 변환합니다.
 def rect(r, theta):
     """
     theta in degrees
@@ -17,7 +19,7 @@ def rect(r, theta):
     y = r * math.sin(math.radians(theta))
     return x, y
 
-
+# 직교좌표계의 좌표(x, y)를 극좌표계의 좌표(r, theta)로 변환합니다.
 def polar(x, y):
     """
     returns r, theta(degrees)
@@ -28,6 +30,7 @@ def polar(x, y):
     return r, theta
 
 
+# 각도를 -180도에서 +180도 범위로 보정합니다.
 def angle_mod_360(angle):
     """
     Maps an angle to the interval -180, +180.
@@ -49,7 +52,7 @@ def angle_mod_360(angle):
     else:
         return angle_between_0_and_360 - 360
 
-
+# 현재 주행 방향에 따라 최적의 waypoints 리스트를 반환합니다.
 def get_waypoints_ordered_in_driving_direction(params):
     # waypoints are always provided in counter clock wise order
     
@@ -60,7 +63,7 @@ def get_waypoints_ordered_in_driving_direction(params):
     else: # driving counter clock wise.
         return waypoints
 
-
+# 주어진 waypoints 리스트를 추가로 분할하여 더 많은 waypoints를 생성합니다.
 def up_sample(waypoints, factor):
     """
     Adds extra waypoints in between provided waypoints
@@ -80,7 +83,7 @@ def up_sample(waypoints, factor):
         for i in range(factor)
     ]
 
-
+# 차량의 현재 위치를 기준으로 가장 가까운 waypoint와 목표 지점을 찾습니다.
 def get_target_point(params):
     waypoints = up_sample(get_waypoints_ordered_in_driving_direction(params), 20)
 
@@ -104,7 +107,7 @@ def get_target_point(params):
 
     return waypoints_starting_with_closest[i_first_outside]
 
-
+# 목표 지점에 도달하기 위해 필요한 조향 각도를 계산합니다.
 def get_target_steering_degree(params):
     tx, ty = get_target_point(params)
     car_x = params['x']
@@ -119,7 +122,7 @@ def get_target_steering_degree(params):
 
     return angle_mod_360(steering_angle)
 
-
+# 목표 지점으로 향하는 조향 각도와 현재 조향 각도의 차이를 기반으로 점수를 계산합니다.
 def score_steer_to_point_ahead(params):
     best_stearing_angle = get_target_steering_degree(params)
     steering_angle = params['steering_angle']
@@ -130,7 +133,7 @@ def score_steer_to_point_ahead(params):
 
     return max(score, 0.01)  # optimizer is rumored to struggle with negative numbers and numbers too close to zero
 
-
+# 최종 보상 점수를 반환합니다.
 def reward_function(params):
     return float(score_steer_to_point_ahead(params))
 
@@ -213,7 +216,7 @@ def test_score_steer_to_point_ahead():
     # 0.828, 0.328, 0.078, 0.01, 0.01
     print("Scores: {}, {}, {}, {}, {}".format(sc(params_l_45), sc(params_l_15), sc(params_0), sc(params_r_15), sc(params_r_45)))
 
-
+# 테스트 함수
 def run_tests():
     test_angle_mod_360()
     test_reward()
@@ -227,7 +230,8 @@ def run_tests():
 
 # run_tests()
 
-def get_shortcut_waypoints(): # 최적경로좌표
+# 최적 경로 waypoints 반환 함수
+def get_shortcut_waypoints(): # 최적 경로 좌표
     return [[-3.53490617, -0.04164061],
             [-3.55675269, -0.21069381],
             [-3.55706974, -0.38237916],
