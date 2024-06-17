@@ -31,11 +31,46 @@ https://github.com/cdthompson/deepracer-k1999-race-lines/blob/master/Race-Line-C
 
 ![image](https://github.com/khw274/DeepRacer-Incheon-2023/assets/125671828/d0f35315-53cb-4321-a533-abf0f451bc67)
 
-#### 하이퍼 파라미터 및 조향각, 속도 
+#### 하이퍼 파라미터 
+```
+(Hyperparameter)                                                        (Value)
+Gradient descent batch size	                                        64
+Entropy	                                                                0.05       
+Discount factor	                                                        0.5
+Loss type	                                                        Huber
+Learning rate	                                                        0.0003
+Number of experience episodes between each policy-updating iteration    20
+Number of epochs	                                                10
+```
 훈련을 진행하기 전 단 두 종류의 하이퍼파라미터를 조정했다.
 
 - Entropy: 값이 클수록 차량이 행동 공간을 더 철저히 탐색하도록 유도
   차량이 더 많은 행동 공간을 탐색하도록 해 정확하게 주행할 수 있도록 기본으로 설정된 0.01에서 0.05로 상향 조정함. 
 - Discount Factor: 값이 클수록 더 먼 미래의 보상을 고려하여 움직임을 결정하는 Discount Factor
-  먼 미래의 보상까지 고려하게 되면 정확도는 증가하겠지만, 그만큼 훈련시간도 늘어나게 된다. 긴 시간 훈련시 안정적이지만 기록이 느려지는 과적합 방지를 위해 기본으로 설정된 0.99에서 0.5로 하향 조정함.
+  먼 미래의 보상까지 고려하게 되면 정확도는 증가하겠지만, 그만큼 훈련시간도 늘어나게 된다.  
+  긴 시간 훈련시 안정적이지만 기록이 느려지는 과적합 방지를 위해 기본으로 설정된 0.99에서 0.5로 하향 조정함.
 
+ #### 조향각과 조향각별 속도
+```
+Action space type: Discrete
+
+Action space
+No.
+        Steering angle (°)    Speed (m/s)
+0	-26.0	              1.50
+1	-26.0	      	      2.00
+2	-13.0	              2.10
+3	-13.0	              2.80
+4	  0.0	              3.30
+5	  0.0	              3.65
+6	 13.0	              2.10
+7	 13.0 	              2.80
+8	 26.0	              1.50
+9	 26.0	              2.00
+```
+
+#### 예선 결과
+```47.483초로 3등을 본선 진출```
+
+### 본선
+```차량과의 통신 불안정으로 수상 실패```
