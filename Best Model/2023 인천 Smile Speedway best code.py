@@ -85,7 +85,7 @@ def up_sample(waypoints, factor):
 
 # 차량의 현재 위치를 기준으로 가장 가까운 waypoint와 목표 지점을 찾습니다.
 def get_target_point(params):
-    waypoints = up_sample(get_waypoints_ordered_in_driving_direction(params), 20)
+    waypoints = up_sample(get_waypoints_ordered_in_driving_direction(params), 20)  # 웨이포인트 리스트의 20배로 업샘플링
 
     car = [params['x'], params['y']]
 
